@@ -58,7 +58,6 @@ $( document ).ready(function() {
   </footer>
 </article> `)
  }
-  // const $tweet = createTweetElement(tweetData);
   //Test for createTweetElement function
   // console.log($tweet);
   // $('#tweet-container').append($tweet);
@@ -77,5 +76,15 @@ $( document ).ready(function() {
   }
 
   renderTweets(data);
+
+  $( "#form" ).submit(function( event ) {
+    event.preventDefault();
+    const queryString = $(this).serialize();
+    console.log(queryString);
+    $.post("http://localhost:8080/tweets", queryString);
+  
+  });
+
+  
 
 });
