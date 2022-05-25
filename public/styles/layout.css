@@ -18,8 +18,100 @@ body {
   color: #545149;
   background-color: #f4f1ec;
   font-size: 24px;
+  font-family: 'Source Sans Pro', sans-serif;
 }
+
+
 
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+main {
+  width: 90%;
+  /* height: auto; */
+  background-color: #f4f1ec;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tweet-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f1ec;
+  width: 100%;
+  height: auto;
+  border: 5px;
+  border-color: #545149;
+  border-style: solid;
+  margin-left: 1em;
+  margin-top: 2em;
+  margin-bottom: 10em;
+  padding: 0.5em;
+
+}
+
+.tweet-container:hover {
+  box-shadow: 10px 7px 5px grey;
+}
+
+.tweets-header {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: 60px;
+  background-color: #f4f1ec;
+
+}
+
+
+article > header > div {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 60px;
+  background-color: #f4f1ec;
+  justify-content: left;
+}
+
+.tweets-main {
+  background-color: #f4f1ec;
+  border-bottom: 5px;
+  border-bottom-style: solid;
+  border-bottom-color:#545149;
+}
+
+article > footer {
+  background-color: #f4f1ec;
+  padding-top: 0.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 16;
+}
+
+article {
+  margin-top: 20px;
+  border-top: 5px;
+  border-color: #545149;
+
+}
+
+
+.names {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5px;
+}
+
+footer i:hover {
+  color: blue;
+}
+
+
+header i:hover {
+  transform: scale(1.5);
+}
+
