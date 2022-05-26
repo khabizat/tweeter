@@ -5,6 +5,13 @@
  */
 
 
+const escape = function (str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
+
 
 //takes in a tweet object and returs an <article> element containing the entire HTML structure of the tweet
 const createTweetElement = function(tweetObj) {
@@ -18,7 +25,7 @@ const createTweetElement = function(tweetObj) {
       </div>
     </header>
     <div class = "tweets-main">
-      <h2>${tweetObj.content.text}</h2>
+      <h2>${escape(tweetObj.content.text)}</h2>
     </div>
     <footer class="tweets-footer">
       <div class="date">
@@ -32,15 +39,14 @@ const createTweetElement = function(tweetObj) {
     </footer>
   </article> `);
 };
+
+
 //Test for createTweetElement function
 // console.log($tweet);
 // $('#tweet-container').append($tweet);
   
   
 //Takes in an array of tweet objects and then appends each one to the #tweets-container
-// loops through tweets
-// calls createTweetElement for each tweet
-// takes return value and appends it to the tweets container
 const renderTweets = function(tweets) {
   for (let tweet of tweets) {
     const $tweet = createTweetElement(tweet);
@@ -54,15 +60,18 @@ $(document).ready(function() {
   $("#form").submit(function(event) {
     event.preventDefault();
     if ($("textarea").val().length === 0 || $("textarea").val() === null) {
-      return alert('Empty text area! Please enter text');
-    } else if ($("textarea").val().length > 140) {
-      return alert('You have exceeded the maximum number of characters');
-    } else {
+      $("#error").text('Empty text area! Please enter text');
+    } 
+    else if ($("textarea").val().length > 140) {
+      $("#error").text('You have exceeded the maximum number of characters');
+    }
+    else {
       const queryString = $(this).serialize();
       $.post("/tweets", queryString)
         .done(function(data) {
           $("textarea").val("");
           loadTweets();
+          $("#error").hide();
         });
     }
 
