@@ -51,12 +51,23 @@ $( document ).ready(function() {
 
   //jQuery POST request
   $( "#form" ).submit(function( event ) {
+
+    event.preventDefault();
+    if($("textarea").val().length === 0 || $("textarea").val()=== null) {
+      return alert('Empty text area! Please enter text');
+    } 
+    event.preventDefault();
+    if($("textarea").val().length > 140) {
+      return alert('You have exceeded the maximum number of characters');
+    }
+
     event.preventDefault();
     const queryString = $(this).serialize();
     console.log(queryString);
     $.post("http://localhost:8080/tweets", queryString);
   
   });
+
 
   //Fetch tweets with AJAX
   const loadTweets = function() {
@@ -65,7 +76,5 @@ $( document ).ready(function() {
     });
   }
   loadTweets()
-
-  
 
 });
