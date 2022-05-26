@@ -4,32 +4,6 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-]
-
-
 $( document ).ready(function() {
 
   //takes in a tweet object and returs an <article> element containing the entire HTML structure of the tweet
@@ -75,8 +49,7 @@ $( document ).ready(function() {
     }
   }
 
-  renderTweets(data);
-
+  //jQuery POST request
   $( "#form" ).submit(function( event ) {
     event.preventDefault();
     const queryString = $(this).serialize();
@@ -85,6 +58,12 @@ $( document ).ready(function() {
   
   });
 
-  
+  //Fetch tweets with AJAX
+  const loadTweets = function() {
+    $.get("http://localhost:8080/tweets", function (data) {
+      return renderTweets(data);
+    });
+  }
+  loadTweets()
 
 });
