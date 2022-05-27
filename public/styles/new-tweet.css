@@ -3,12 +3,28 @@
   margin-left: 1em;
 }
 
-form {
+.error-messages {
+  margin-top: 1em; 
+}
+
+#error {
+  color: red;
+  font-weight: 600;
+  font-size: 1em;
+}
+
+#form {
   display:flex;
   flex-direction: column;
   justify-content: center;
   align-items:stretch;
 }
+
+#textarea-label {
+  font-size: 0.8em;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
 #tweet-text {
   border-bottom-color: #545149;
   border-bottom-width: 5px;
@@ -17,26 +33,21 @@ form {
   border-left: 0;
   background-color: #f4f1ec;
   line-height: 1em;
-  margin-top: 5px;
+  margin-top: 0.5em;
 } 
 
-button {
-  /* margin-top: 10px; */
-  font-family: 'Bungee', cursive;
-  background-color: #4056A1;
-  color: #FFFFFF;
-}
-
-label {
-  font-family: 'Source Sans Pro', sans-serif;
-}
-
-form div {
+.form-bottom {
   display: flex;
   flex-direction: row;
   margin-top: 10px;
   justify-content: space-between;
   font-family: 'Bungee', cursive;
+}
+
+.button {
+  font-family: 'Bungee', cursive;
+  background-color: #4056A1;
+  color: #FFFFFF;
 }
 
 .output {
@@ -47,3 +58,10 @@ form div {
   color: red;
 }
 
+
+@media only screen and (min-width: 768px) {
+  .new-tweet {
+    margin-top: 5em;
+    margin-right: 1em;
+  }
+}
