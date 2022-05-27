@@ -5,7 +5,29 @@
   background-image: url("https://www.transparenttextures.com/patterns/wall-4-light.png");
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  margin-top: 120px;
+  align-content: center;
+  margin-top: 120px;  
+}
+
+#user-name {
+  color: #FFFFFF;
+}
+
+@media only screen and (min-width: 768px) {
+  #header {
+    width: 40%;
+    height: 45%;
+    margin: 2em;
+    margin-top: 6em;
+  }
+
+  .profile-picture {
+    margin-top: 0.5em;
+  }
+
+  #user-name {
+    font-size: 1em;
+  }
 }
