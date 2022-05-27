@@ -8,7 +8,7 @@ This repository is the starter code for the project: Students will fork and clon
 
 Main page on tablet and desktop
 
-!["Main page on tablet and desktop"](docs/main-page-tablet.png)
+!["Main page on tablet and desktop"](docs/main-page-tablet-small.png)
 
 
 Main page on mobile
