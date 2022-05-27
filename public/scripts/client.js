@@ -5,6 +5,7 @@
  */
 
 
+//Function to prevent Cross-Site Scripting
 const escape = function (str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
@@ -12,22 +13,21 @@ const escape = function (str) {
 };
 
 
-
-//takes in a tweet object and returs an <article> element containing the entire HTML structure of the tweet
+//Takes in a tweet object and returs an <article> element containing the entire HTML structure of the tweet
 const createTweetElement = function(tweetObj) {
   return  $(`
     <article class="tweet">
-    <header class="tweets-header">
+    <header class="tweet-header">
       <i class="fa-solid fa-user-astronaut"></i>
       <div class="names">
-        <span id="user-name">${tweetObj.user.name}</span>
-        <span id="user-nickname">${tweetObj.user.handle}</span>
+        <span class="user-name">${tweetObj.user.name}</span>
+        <span class="user-nickname">${tweetObj.user.handle}</span>
       </div>
     </header>
-    <div class = "tweets-main">
-      <h2>${escape(tweetObj.content.text)}</h2>
+    <div class="tweet-main">
+      <p>${escape(tweetObj.content.text)}<p>
     </div>
-    <footer class="tweets-footer">
+    <footer class="tweet-footer">
       <div class="date">
         <label id="date-posted">${timeago.format(tweetObj.created_at)}</label>
       </div>
@@ -40,17 +40,12 @@ const createTweetElement = function(tweetObj) {
   </article> `);
 };
 
-
-//Test for createTweetElement function
-// console.log($tweet);
-// $('#tweet-container').append($tweet);
-  
   
 //Takes in an array of tweet objects and then appends each one to the #tweets-container
 const renderTweets = function(tweets) {
   for (let tweet of tweets) {
     const $tweet = createTweetElement(tweet);
-    $('#tweet-container').append($tweet);
+    $('#tweets-container').prepend($tweet);
   }
 };
 
@@ -60,10 +55,10 @@ $(document).ready(function() {
   $("#form").submit(function(event) {
     event.preventDefault();
     if ($("textarea").val().length === 0 || $("textarea").val() === null) {
-      $("#error").text('Empty text area! Please enter text');
+      $("#error").html('Empty text area! Please enter text');
     } 
     else if ($("textarea").val().length > 140) {
-      $("#error").text('You have exceeded the maximum number of characters');
+      $("#error").html('You have exceeded the maximum number of characters');
     }
     else {
       const queryString = $(this).serialize();
@@ -72,6 +67,7 @@ $(document).ready(function() {
           $("textarea").val("");
           loadTweets();
           $("#error").hide();
+          $(".counter").val(140);
         });
     }
 
@@ -79,7 +75,7 @@ $(document).ready(function() {
 
   // Fetch tweets with AJAX
   const loadTweets = function() {
-    $("#tweet-container").empty();
+    $("#tweets-container").empty();
     $.get("/tweets", function(data) {
       return renderTweets(data);
     });
